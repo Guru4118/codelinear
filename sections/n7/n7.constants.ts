@@ -77,11 +77,14 @@ export const N7_LAYOUT = {
   rootClass: "[--n7-phone-w:269px]",
   /** Hero + feature row shell (3 tracks). */
   rowShellClass: cn(
-    "relative z-[1] grid w-full grid-cols-1 items-center gap-10",
+    "relative z-[1] grid w-full grid-cols-1 items-center gap-8 sm:gap-10",
     "lg:grid-cols-[minmax(0,1fr)_var(--n7-phone-w)_minmax(0,1fr)] lg:items-center lg:gap-x-12",
   ),
+  /** Feature rows on mobile: image then copy. Hero uses explicit order-1/2/3 in n7-row. */
+  mobileMediaOrder: "max-lg:order-1",
+  mobileCopyOrder: "max-lg:order-2",
   pairBaseClass: cn(
-    "grid min-w-0 grid-cols-1 items-center gap-10",
+    "grid min-w-0 grid-cols-1 items-center gap-8 sm:gap-10",
     "lg:col-span-2 lg:col-start-2 lg:items-center lg:gap-x-12",
   ),
   pairTextMediaClass: "lg:grid-cols-[minmax(0,1fr)_var(--n7-phone-w)]",

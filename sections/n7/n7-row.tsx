@@ -5,6 +5,9 @@ import { N7Content } from "./n7-content";
 import { N7Phone } from "./n7-phone";
 import { N7_LAYOUT, n7PairClass } from "./n7.constants";
 
+const { mobileMediaOrder, mobileCopyOrder, contentMaxClass, rowShellClass, leadSpacerClass } =
+  N7_LAYOUT;
+
 function N7Copy({
   block,
   variant = "feature",
@@ -24,7 +27,9 @@ function N7Copy({
       showCtas={block.showCtas}
       variant={variant}
       className={cn(
-        N7_LAYOUT.contentMaxClass,
+        contentMaxClass,
+        "mx-auto w-full max-lg:max-w-none lg:order-none",
+        mobileCopyOrder,
         align === "end" ? "lg:justify-self-end" : "lg:justify-self-start",
         className,
       )}
@@ -36,57 +41,78 @@ function N7Media({
   phone,
   align,
   priority,
+  className,
 }: {
   phone: N7FeatureBlock["phone"];
   align: "start" | "end";
   priority?: boolean;
+  className?: string;
 }) {
   return (
     <N7Phone
       phone={phone}
       priority={priority}
       className={cn(
-        "mx-auto lg:mx-0",
+        mobileMediaOrder,
+        "mx-auto w-full max-lg:max-w-[var(--n7-phone-w)] lg:mx-0",
         align === "end" ? "lg:justify-self-end" : "lg:justify-self-start",
+        className,
       )}
     />
   );
 }
 
+/**
+ * Mobile: lead (heading, body, REQUEST DEMO) → phone → compliance copy.
+ * Desktop: lead | phone | copy.
+ */
 function N7HeroRow({ block, priority }: { block: N7HeroBlock; priority?: boolean }) {
-  const { rowShellClass } = N7_LAYOUT;
-
   return (
     <div className={rowShellClass}>
-      <N7Copy block={block.lead} variant="hero" align="start" />
-      <N7Media phone={block.phone} align="start" priority={priority} />
-      <N7Copy block={block.copy} align="end" />
+      <N7Copy
+        block={block.lead}
+        variant="hero"
+        align="start"
+        className="max-lg:order-1 lg:col-start-1 lg:row-start-1 lg:max-w-none"
+      />
+      <N7Media
+        phone={block.phone}
+        align="start"
+        priority={priority}
+        className="max-lg:order-2 lg:col-start-2 lg:row-start-1"
+      />
+      <N7Copy
+        block={block.copy}
+        variant="feature"
+        align="end"
+        className="max-lg:order-3 lg:col-start-3 lg:row-start-1 lg:max-w-none"
+      />
     </div>
   );
 }
 
+/**
+ * Mobile: phone → copy.
+ * Desktop: text-media or media-text zig-zag.
+ */
 function N7FeatureRow({ block }: { block: N7FeatureBlock }) {
-  const { rowShellClass, leadSpacerClass } = N7_LAYOUT;
   const textFirst = block.variant === "text-media";
-
-  const copy = <N7Copy block={block.copy} align={textFirst ? "start" : "end"} />;
-  const media = <N7Media phone={block.phone} align={textFirst ? "end" : "start"} />;
 
   return (
     <div className={rowShellClass}>
       <div className={leadSpacerClass} aria-hidden />
+
       <div className={n7PairClass(block.variant)}>
-        {textFirst ? (
-          <>
-            {copy}
-            {media}
-          </>
-        ) : (
-          <>
-            {media}
-            {copy}
-          </>
-        )}
+        <N7Media
+          phone={block.phone}
+          align={textFirst ? "end" : "start"}
+          className={textFirst ? "lg:order-2" : "lg:order-1"}
+        />
+        <N7Copy
+          block={block.copy}
+          align={textFirst ? "start" : "end"}
+          className={textFirst ? "lg:order-1" : "lg:order-2"}
+        />
       </div>
     </div>
   );
