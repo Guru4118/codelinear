@@ -61,3 +61,25 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/* ——— Banking marquee ticker ——— */
+
+@keyframes banking-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.banking-marquee-track {
+  animation: banking-marquee-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banking-marquee-track {
+    animation: none;
+  }
+}
