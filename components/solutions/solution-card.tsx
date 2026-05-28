@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { SolutionItem } from "@/data/solutions";
 import { cn } from "@/lib/cn";
 
-import { LearnMoreLink } from "./learn-more-link";
+import { Button } from "@/components/ui";
 
 const CARD_LAYOUT = {
   iconSize: 40,
@@ -60,7 +60,7 @@ export function SolutionCard({ item, className }: SolutionCardProps) {
       </p>
 
       <div style={{ marginTop: descriptionToLink }}>
-        <LearnMoreLink href={item.href} />
+        <Button href={item.href} variant="learnMore" />
       </div>
     </article>
   );

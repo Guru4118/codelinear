@@ -14,6 +14,7 @@ const config: Config = {
     "./shared/**/*.{js,ts,jsx,tsx,mdx}",
     "./providers/**/*.{js,ts,jsx,tsx,mdx}",
     "./shared/**/*.{js,ts,jsx,tsx,mdx}",
+    "./sections/cb7/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {

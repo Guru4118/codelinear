@@ -3,7 +3,6 @@ import { SECTION_GLOW_GRADIENT, SECTION_LAYOUT } from "@/config/section-layout";
 export const SOLUTIONS_COPY = {
   heading: ["All of our solutions are", "tailor-made to your needs"] as const,
   cta: "REQUEST DEMO",
-  learnMore: "LEARN MORE",
 } as const;
 
 export const SOLUTIONS_LAYOUT = {
