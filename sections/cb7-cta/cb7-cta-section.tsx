@@ -4,12 +4,13 @@ import { cn } from "@/lib/cn";
 
 import { Cb7CtaCard } from "./cb7-cta-card";
 import { CB7_CTA_COPY, type CtaCopy } from "./cb7-cta.constants";
-import type { CtaCardBackgroundText } from "./cb7-cta-card";
+import type { CtaCardBackgroundText, CtaCardVariant } from "./cb7-cta-card";
 
 type Cb7CtaSectionProps = {
   copy?: CtaCopy;
   showBackgroundText?: boolean;
   backgroundText?: CtaCardBackgroundText;
+  cardVariant?: CtaCardVariant;
   id?: string;
   headingId?: string;
   className?: string;
@@ -19,6 +20,7 @@ export function Cb7CtaSection({
   copy = CB7_CTA_COPY,
   showBackgroundText,
   backgroundText = "cb7",
+  cardVariant = "default",
   id = "paperless-cta",
   headingId,
   className,
@@ -34,6 +36,7 @@ export function Cb7CtaSection({
       <SectionContainer className={SECTION_LAYOUT.sectionYClass}>
         <Cb7CtaCard
           copy={copy}
+          variant={cardVariant}
           backgroundText={backgroundText}
           showBackgroundText={showBackgroundText}
           headingId={resolvedHeadingId}

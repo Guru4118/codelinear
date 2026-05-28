@@ -3,7 +3,7 @@ export { InsightsSection } from "./insights";
 export { CaseStudiesSection } from "./case-studies";
 export { N7Section } from "./n7";
 export { Cb7Section } from "./cb7";
-export { Cb7CtaSection } from "./cb7-cta";
+export { Cb7CtaSection, PaperlessCtaSection } from "./cb7-cta";
 export { CoreCapabilitiesSection } from "./core-capabilities";
 export { HeroSection } from "./hero";
 export { SolutionsSection } from "./solutions";

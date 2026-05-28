@@ -6,10 +6,12 @@ import { N7CtaBackgroundText } from "./n7-cta-background-text";
 import { CB7_CTA_COPY, CB7_CTA_LAYOUT, type CtaCopy } from "./cb7-cta.constants";
 
 export type CtaCardBackgroundText = false | "cb7" | "n7";
+export type CtaCardVariant = "default" | "flat";
 
 type Cb7CtaCardProps = {
   copy?: CtaCopy;
   headingId?: string;
+  variant?: CtaCardVariant;
   /** @deprecated Use `backgroundText` instead */
   showBackgroundText?: boolean;
   backgroundText?: CtaCardBackgroundText;
@@ -31,11 +33,13 @@ function resolveBackgroundText(
 export function Cb7CtaCard({
   copy = CB7_CTA_COPY,
   headingId = "cb7-cta-heading",
+  variant = "default",
   showBackgroundText,
   backgroundText,
 }: Cb7CtaCardProps) {
   const resolvedBackground = resolveBackgroundText(backgroundText, showBackgroundText);
   const { card, spacing } = CB7_CTA_LAYOUT;
+  const isFlat = variant === "flat";
   const headingLines = typeof copy.heading === "string" ? [copy.heading] : copy.heading;
 
   return (
@@ -44,13 +48,18 @@ export function Cb7CtaCard({
         "relative mx-auto grid w-full overflow-hidden",
         "grid-cols-1 items-center gap-8",
         "lg:grid-cols-[1fr_auto] lg:gap-12",
+        isFlat && "bg-transparent",
       )}
       style={{
         maxWidth: card.maxWidth,
-        minHeight: card.height,
-        borderRadius: card.borderRadius,
-        background: card.background,
-        padding: `${spacing.cardPaddingY}px ${spacing.cardPaddingX}px`,
+        ...(isFlat
+          ? {}
+          : {
+              minHeight: card.height,
+              borderRadius: card.borderRadius,
+              background: card.background,
+              padding: `${spacing.cardPaddingY}px ${spacing.cardPaddingX}px`,
+            }),
       }}
     >
       {resolvedBackground === "cb7" ? <Cb7CtaBackgroundText /> : null}

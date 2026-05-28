@@ -3,7 +3,7 @@ import { CaseStudiesSection } from "@/sections/case-studies";
 import { InsightsSection } from "@/sections/insights";
 import { Cb7Section } from "@/sections/cb7";
 import { N7Section } from "@/sections/n7";
-import { Cb7CtaSection } from "@/sections/cb7-cta";
+import { Cb7CtaSection, PaperlessCtaSection } from "@/sections/cb7-cta";
 import { CoreCapabilitiesSection } from "@/sections/core-capabilities";
 import { HeroSection } from "@/sections/hero";
 import { SolutionsSection } from "@/sections/solutions";
@@ -20,6 +20,7 @@ export default function HomePage() {
       <N7Section />
       <InsightsSection />
       <CaseStudiesSection />
+      <PaperlessCtaSection />
     </main>
   );
 }
