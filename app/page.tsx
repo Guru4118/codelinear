@@ -1,4 +1,5 @@
 import { BankingMarqueeSection } from "@/sections/banking-marquee";
+import { InsightsSection } from "@/sections/insights";
 import { Cb7Section } from "@/sections/cb7";
 import { N7Section } from "@/sections/n7";
 import { Cb7CtaSection } from "@/sections/cb7-cta";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Cb7CtaSection />
       <BankingMarqueeSection />
       <N7Section />
+      <InsightsSection />
     </main>
   );
 }
