@@ -11,3 +11,4 @@ export const n7Phone2Src = "/images/ph-2.png" as const;
 export const n7Phone3Src = "/images/ph-3.png" as const;
 export const n7FanSrc = "/images/fan.png" as const;
 export const insightsDesignImgSrc = "/images/design-img.png" as const;
+export const caseStudyBrandLogoSrc = "/images/zoomer.png" as const;

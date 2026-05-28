@@ -1,4 +1,4 @@
-import { Archivo, Chivo_Mono } from "next/font/google";
+import { Archivo, Chivo_Mono, Roboto } from "next/font/google";
 
 export const archivo = Archivo({
   subsets: ["latin"],
@@ -14,4 +14,11 @@ export const chivoMono = Chivo_Mono({
   display: "swap",
 });
 
-export const fontVariables = `${archivo.variable} ${chivoMono.variable}`;
+export const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
+
+export const fontVariables = `${archivo.variable} ${chivoMono.variable} ${roboto.variable}`;
