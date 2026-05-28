@@ -29,6 +29,6 @@ export const CB7_LAYOUT = {
   },
   dashboard: {
     src: "/images/Dashboard-image.png",
-    maxWidth: 820,
+    maxWidth: 1100,
   },
 } as const;

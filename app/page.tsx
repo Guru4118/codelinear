@@ -1,4 +1,5 @@
 import { Cb7Section } from "@/sections/cb7";
+import { CoreCapabilitiesSection } from "@/sections/core-capabilities";
 import { HeroSection } from "@/sections/hero";
 import { SolutionsSection } from "@/sections/solutions";
 
@@ -8,6 +9,7 @@ export default function HomePage() {
       <HeroSection />
       <SolutionsSection />
       <Cb7Section />
+      <CoreCapabilitiesSection />
     </main>
   );
 }

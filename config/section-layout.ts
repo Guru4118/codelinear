@@ -24,3 +24,6 @@ export const SECTION_LAYOUT = {
 
 export const SECTION_GLOW_GRADIENT =
   "linear-gradient(103.43deg, #00B4FD -1.02%, #003ACE 83.53%)" as const;
+
+export const CHECK_BADGE_GRADIENT =
+  "linear-gradient(87.28deg, #00B4FD -65.9%, #003ACE 78.4%)" as const;

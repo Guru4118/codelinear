@@ -11,7 +11,7 @@ export function Cb7Section() {
     <section
       id="core-banking"
       className={cn(
-        "relative w-full overflow-visible bg-surface-page",
+        "relative w-full overflow-x-hidden bg-surface-page",
         "min-h-[680px] lg:min-h-[760px]",
       )}
       aria-labelledby="cb7-heading"
@@ -23,16 +23,17 @@ export function Cb7Section() {
           SECTION_LAYOUT.sectionYClass,
           "relative z-[1] flex min-h-[600px] items-center lg:min-h-[680px]",
         )}
-        innerClassName="overflow-visible"
       >
         <div
           className={cn(
-            "grid w-full grid-cols-1 items-center gap-10",
-            "lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.18fr)] lg:gap-6",
+            "grid w-full min-w-0 grid-cols-1 items-center gap-10",
+            "lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1fr)] lg:gap-6",
           )}
         >
           <Cb7Content />
-          <Cb7Visual />
+          <div className="relative">
+            <Cb7Visual />
+          </div>
         </div>
       </SectionContainer>
     </section>
