@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={siteConfig.defaultLocale} className={`h-full ${fontVariables}`}>
-      <body className="flex min-h-full flex-col overflow-x-hidden">
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-surface-page text-text-default">
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

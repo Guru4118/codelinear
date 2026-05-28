@@ -1,6 +1,4 @@
-import { NAVBAR_LAYOUT } from "@/config/navigation";
 import { SECTION_LAYOUT } from "@/config/section-layout";
-import { SiteNavbar } from "@/layout/site-navbar";
 import { SectionContainer } from "@/layout/section-container";
 import { cn } from "@/lib/cn";
 
@@ -22,13 +20,6 @@ export function HeroSection() {
           left: `calc(${HERO_LAYOUT.glow.left} / ${HERO_LAYOUT.canvasWidth} * 100%)`,
         }}
       />
-
-      <div
-        className="flex justify-center px-4"
-        style={{ paddingTop: NAVBAR_LAYOUT.topOffset }}
-      >
-        <SiteNavbar />
-      </div>
 
       <SectionContainer
         className={SECTION_LAYOUT.sectionPaddingBottomClass}

@@ -9,7 +9,7 @@ import { cva, type VariantProps } from "@/lib/cva";
 const buttonVariants = cva(
   [
     "inline-flex items-center justify-center font-[family-name:var(--font-chivo-mono)] font-normal uppercase",
-    "transition-[filter,box-shadow,background-color,border-color,opacity] duration-300",
+    "transition-[color,filter,box-shadow,background-color,border-color,opacity] duration-300",
     "focus-visible:ring-2 focus-visible:outline-none",
     "disabled:pointer-events-none disabled:opacity-50",
   ],
@@ -17,14 +17,14 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: [
-          "text-white",
+          "border border-transparent text-white",
           "bg-[linear-gradient(106.53deg,#00B4FD_-5.68%,#003ACE_86.98%)]",
-          "hover:brightness-110 hover:shadow-[0_8px_24px_rgba(0,100,253,0.35)]",
+          "hover:border-white hover:bg-white hover:[background-image:none] hover:text-accent hover:shadow-none",
           "focus-visible:ring-[#00B4FD]/50",
         ],
         secondary: [
           "border border-text-default bg-transparent text-text-default",
-          "hover:border-text-default/90 hover:bg-white/[0.04]",
+          "hover:border-white hover:bg-white hover:text-accent",
           "focus-visible:ring-text-default/30",
         ],
         nav: [

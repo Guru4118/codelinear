@@ -4,15 +4,29 @@ import { Button } from "@/components/ui/button";
 import { NAVBAR_LAYOUT, SITE_NAV } from "@/config/navigation";
 import { cn } from "@/lib/cn";
 
+const navLinkClass = cn(
+  "font-[family-name:var(--font-chivo-mono)] text-[12px] font-normal leading-[1.3] tracking-normal uppercase",
+  "whitespace-nowrap transition-opacity hover:opacity-80",
+);
+
 export function SiteNavbar() {
+  const { background, borderRadius, height, linkColor, paddingX, paddingY } = NAVBAR_LAYOUT;
+
   return (
     <header
       className={cn(
-        "mx-auto flex w-[min(716.45px,calc(100%-2rem))] items-center justify-between gap-4",
-        "rounded-[12px] border border-white/[0.08] bg-white/[0.04] py-[9px] pr-[10px] pl-[10px]",
-        "shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md",
+        "flex w-full items-center justify-between gap-3 sm:gap-4",
+        "border border-white/[0.06]",
       )}
-      style={{ height: NAVBAR_LAYOUT.height }}
+      style={{
+        height,
+        borderRadius,
+        paddingLeft: paddingX,
+        paddingRight: paddingX,
+        paddingTop: paddingY,
+        paddingBottom: paddingY,
+        backgroundColor: background,
+      }}
     >
       <Link
         href="/"
@@ -23,14 +37,17 @@ export function SiteNavbar() {
       </Link>
 
       <nav
-        className="hidden min-w-0 flex-1 items-center justify-center gap-8 font-[family-name:var(--font-archivo)] text-[13px] font-normal text-text-nav sm:gap-10 md:flex lg:gap-10"
+        className={cn(
+          "hidden min-w-0 flex-1 items-center justify-center gap-5 md:flex lg:gap-7",
+        )}
         aria-label="Primary"
       >
         {SITE_NAV.links.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="whitespace-nowrap transition-colors hover:text-text-default"
+            className={navLinkClass}
+            style={{ color: linkColor }}
           >
             {link.label}
           </Link>
@@ -39,10 +56,10 @@ export function SiteNavbar() {
 
       <Button
         href={SITE_NAV.cta.href}
-        variant="nav"
-        size="nav"
+        variant="secondary"
+        size="auto"
         width="auto"
-        className="shrink-0"
+        className="h-[33px] shrink-0 rounded-lg px-4 text-[11px] leading-none tracking-wide"
       >
         {SITE_NAV.cta.label}
       </Button>

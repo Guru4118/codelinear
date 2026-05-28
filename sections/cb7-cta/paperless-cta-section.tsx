@@ -4,7 +4,7 @@ import { Cb7CtaSection } from "./cb7-cta-section";
 export function PaperlessCtaSection() {
   return (
     <Cb7CtaSection
-      id="paperless-cta-banner"
+      id="request-demo"
       backgroundText={false}
       cardVariant="flat"
       headingId="paperless-cta-banner-heading"
