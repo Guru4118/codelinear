@@ -1,3 +1,1 @@
-/**
- * Static data, CMS adapters, and content loaders.
- */
+export { SOLUTION_ITEMS, type SolutionItem } from "./solutions";

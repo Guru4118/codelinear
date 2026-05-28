@@ -9,7 +9,7 @@ export const archivo = Archivo({
 
 export const chivoMono = Chivo_Mono({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500"],
   variable: "--font-chivo-mono",
   display: "swap",
 });

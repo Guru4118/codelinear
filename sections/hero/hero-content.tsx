@@ -27,7 +27,7 @@ export function HeroContent() {
       <m.h1
         id="hero-heading"
         className={cn(
-          "font-[family-name:var(--font-archivo)] text-[clamp(2.25rem,5vw,67px)] leading-[1.2] font-medium tracking-[-0.01em] text-[#E9F4F9]",
+          "font-[family-name:var(--font-archivo)] text-[clamp(2.25rem,5vw,67px)] leading-[1.2] font-medium tracking-[-0.01em] text-text-default",
         )}
         variants={fadeUp}
         initial="hidden"
@@ -43,7 +43,7 @@ export function HeroContent() {
 
       <m.p
         className={cn(
-          "mt-7 max-w-[520px] font-[family-name:var(--font-archivo)] text-base leading-[1.3] font-normal text-[#E9F4F9]/55",
+          "mt-7 max-w-[520px] font-[family-name:var(--font-archivo)] text-base leading-[1.3] font-normal text-text-muted",
         )}
         variants={fadeUp}
         initial="hidden"

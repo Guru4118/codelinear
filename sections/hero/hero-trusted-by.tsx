@@ -10,7 +10,7 @@ export function HeroTrustedBy() {
     <div className="flex flex-col gap-4">
       <p
         className={cn(
-          "font-[family-name:var(--font-archivo)] text-[13px] font-normal text-[#E9F4F9]/45",
+          "font-[family-name:var(--font-archivo)] text-[13px] font-normal text-text-subtle",
         )}
       >
         {HERO_COPY.trustedByLabel}

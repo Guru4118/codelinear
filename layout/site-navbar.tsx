@@ -16,21 +16,21 @@ export function SiteNavbar() {
     >
       <Link
         href="/"
-        className="shrink-0 font-[family-name:var(--font-archivo)] text-lg font-medium tracking-tight text-[#E9F4F9]"
+        className="shrink-0 font-[family-name:var(--font-archivo)] text-lg font-medium tracking-tight text-text-default"
         aria-label="N7 home"
       >
         N7
       </Link>
 
       <nav
-        className="hidden min-w-0 flex-1 items-center justify-center gap-8 font-[family-name:var(--font-archivo)] text-[13px] font-normal text-[#E9F4F9]/75 sm:gap-10 md:flex lg:gap-10"
+        className="hidden min-w-0 flex-1 items-center justify-center gap-8 font-[family-name:var(--font-archivo)] text-[13px] font-normal text-text-nav sm:gap-10 md:flex lg:gap-10"
         aria-label="Primary"
       >
         {SITE_NAV.links.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="whitespace-nowrap transition-colors hover:text-[#E9F4F9]"
+            className="whitespace-nowrap transition-colors hover:text-text-default"
           >
             {link.label}
           </Link>

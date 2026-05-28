@@ -1,3 +1,1 @@
-/**
- * Cross-cutting modules shared across features (non-UI).
- */
+export { SectionGlow, type SectionGlowConfig } from "./section-glow";

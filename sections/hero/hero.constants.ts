@@ -9,11 +9,12 @@ export const HERO_COPY = {
   trustedByLabel: "Trusted By:",
 } as const;
 
+import { SECTION_GLOW_GRADIENT, SECTION_LAYOUT } from "@/config/section-layout";
+
 /** Figma-extracted layout tokens — hero-scoped only */
 export const HERO_LAYOUT = {
-  canvasWidth: 1440,
-  background: "#000D12",
-  containerMaxWidth: 1320,
+  canvasWidth: SECTION_LAYOUT.canvasWidth,
+  background: SECTION_LAYOUT.background,
   contentMaxWidth: 560,
   columnSplit: { left: "48%", right: "52%" },
   illustration: { width: 630, height: 337 },
@@ -24,7 +25,7 @@ export const HERO_LAYOUT = {
     opacity: 0.5,
     top: 234,
     left: 903,
-    gradient: "linear-gradient(103.43deg, #00B4FD -1.02%, #003ACE 83.53%)",
+    gradient: SECTION_GLOW_GRADIENT,
     blur: 85,
   },
   spacing: {

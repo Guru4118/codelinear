@@ -1,7 +1,16 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
-/* ——— Base reset (no design tokens) ——— */
+@theme inline {
+  --color-text-default: #e9f4f9;
+  --color-text-muted: rgb(233 244 249 / 0.55);
+  --color-text-subtle: rgb(233 244 249 / 0.45);
+  --color-text-nav: rgb(233 244 249 / 0.75);
+  --color-accent: #00b4fd;
+  --color-surface-page: #000d12;
+}
+
+/* ——— Base reset ——— */
 
 *,
 *::before,
