@@ -18,27 +18,107 @@ function getOffset(index: number, active: number, total: number) {
   return diff;
 }
 
-export function CaseStudiesCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const total = CASE_STUDIES.length;
-  const { cardMaxWidth, carouselMinHeight } = CASE_STUDIES_LAYOUT;
+type CarouselFooterProps = {
+  total: number;
+  activeIndex: number;
+  onPrev: () => void;
+  onNext: () => void;
+  onSelect: (index: number) => void;
+  className?: string;
+};
 
-  const goTo = useCallback(
-    (index: number) => {
-      setActiveIndex((index + total) % total);
-    },
-    [total],
+function CarouselFooter({
+  total,
+  activeIndex,
+  onPrev,
+  onNext,
+  onSelect,
+  className,
+}: CarouselFooterProps) {
+  return (
+    <div className={cn("relative z-30 w-full", className)}>
+      <div className="flex justify-center">
+        <CaseStudiesControls
+          total={total}
+          activeIndex={activeIndex}
+          onPrev={onPrev}
+          onNext={onNext}
+          onSelect={onSelect}
+        />
+      </div>
+      <div className="mt-6 flex justify-center sm:justify-end">
+        <CaseStudiesViewAllLink />
+      </div>
+    </div>
   );
+}
 
-  const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
-  const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+/** Mobile / tablet — single card in document flow (no stacked absolute slides). */
+function CaseStudiesCarouselMobile({
+  activeIndex,
+  onPrev,
+  onNext,
+  onSelect,
+  total,
+}: {
+  activeIndex: number;
+  total: number;
+  onPrev: () => void;
+  onNext: () => void;
+  onSelect: (index: number) => void;
+}) {
+  const active = CASE_STUDIES[activeIndex];
+
+  if (!active) return null;
 
   return (
-    <div className="mt-14 flex w-full flex-col items-center">
+    <div className="mt-8 flex w-full min-w-0 flex-col gap-8 sm:mt-10 lg:hidden" aria-live="polite">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={active.id}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full min-w-0"
+        >
+          <CaseStudyCard item={active} />
+        </motion.div>
+      </AnimatePresence>
+
+      <CarouselFooter
+        total={total}
+        activeIndex={activeIndex}
+        onPrev={onPrev}
+        onNext={onNext}
+        onSelect={onSelect}
+      />
+    </div>
+  );
+}
+
+/** Desktop — stacked peek carousel. */
+function CaseStudiesCarouselDesktop({
+  activeIndex,
+  onPrev,
+  onNext,
+  onSelect,
+  total,
+}: {
+  activeIndex: number;
+  total: number;
+  onPrev: () => void;
+  onNext: () => void;
+  onSelect: (index: number) => void;
+}) {
+  const { cardMaxWidth, carousel } = CASE_STUDIES_LAYOUT;
+  const { minHeight, slideOffset } = carousel;
+
+  return (
+    <div className="mt-14 hidden w-full flex-col items-center lg:flex" aria-live="polite">
       <div
         className="relative w-full max-w-[1100px]"
-        style={{ minHeight: carouselMinHeight }}
-        aria-live="polite"
+        style={{ minHeight }}
       >
         {CASE_STUDIES.map((item, index) => {
           const offset = getOffset(index, activeIndex, total);
@@ -50,13 +130,13 @@ export function CaseStudiesCarousel() {
             <motion.div
               key={item.id}
               className={cn(
-                "absolute top-1/2 left-1/2 w-full max-w-full px-4 sm:px-8",
+                "absolute top-1/2 left-1/2 w-full max-w-full px-6 xl:px-8",
                 !isActive && "pointer-events-none",
               )}
               style={{ maxWidth: cardMaxWidth, zIndex: isActive ? 20 : 10 - Math.abs(offset) }}
               initial={false}
               animate={{
-                x: `calc(-50% + ${offset * 72}px)`,
+                x: `calc(-50% + ${offset * slideOffset}px)`,
                 y: "-50%",
                 scale: isActive ? 1 : 0.9,
                 opacity: isActive ? 1 : 0.45,
@@ -82,20 +162,44 @@ export function CaseStudiesCarousel() {
         </AnimatePresence>
       </div>
 
-      <div className="relative z-30 mt-10 w-full max-w-[1100px] px-4 sm:px-8">
-        <div className="flex justify-center">
-          <CaseStudiesControls
-            total={total}
-            activeIndex={activeIndex}
-            onPrev={goPrev}
-            onNext={goNext}
-            onSelect={goTo}
-          />
-        </div>
-        <div className="mt-6 flex justify-end">
-          <CaseStudiesViewAllLink />
-        </div>
-      </div>
+      <CarouselFooter
+        className="mt-10 max-w-[1100px] px-6 xl:px-8"
+        total={total}
+        activeIndex={activeIndex}
+        onPrev={onPrev}
+        onNext={onNext}
+        onSelect={onSelect}
+      />
     </div>
+  );
+}
+
+export function CaseStudiesCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = CASE_STUDIES.length;
+
+  const goTo = useCallback(
+    (index: number) => {
+      setActiveIndex((index + total) % total);
+    },
+    [total],
+  );
+
+  const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
+  const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+
+  const controls = {
+    activeIndex,
+    total,
+    onPrev: goPrev,
+    onNext: goNext,
+    onSelect: goTo,
+  };
+
+  return (
+    <>
+      <CaseStudiesCarouselMobile {...controls} />
+      <CaseStudiesCarouselDesktop {...controls} />
+    </>
   );
 }

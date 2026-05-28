@@ -11,7 +11,7 @@ export function CaseStudiesSection() {
   return (
     <section
       id="case-studies"
-      className="relative w-full overflow-hidden bg-surface-page"
+      className="relative w-full overflow-x-hidden bg-surface-page"
       aria-labelledby="case-studies-heading"
     >
       <SectionContainer className={SECTION_LAYOUT.sectionYClass}>

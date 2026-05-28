@@ -20,7 +20,7 @@ export function CaseStudiesControls({
   onSelect,
 }: CaseStudiesControlsProps) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex max-w-full flex-wrap items-center justify-center gap-3 sm:gap-4">
         <button
           type="button"
           onClick={onPrev}
