@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
+import { fontVariables } from "@/lib/fonts";
 import { AppProviders } from "@/providers";
 
 import "@/styles/globals.css";
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={siteConfig.defaultLocale} className="h-full">
+    <html lang={siteConfig.defaultLocale} className={`h-full ${fontVariables}`}>
       <body className="flex min-h-full flex-col">
         <AppProviders>{children}</AppProviders>
       </body>
