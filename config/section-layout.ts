@@ -27,3 +27,6 @@ export const SECTION_GLOW_GRADIENT =
 
 export const CHECK_BADGE_GRADIENT =
   "linear-gradient(87.28deg, #00B4FD -65.9%, #003ACE 78.4%)" as const;
+
+export const CB7_CTA_CARD_GRADIENT =
+  "linear-gradient(99.21deg, #031E2A -12.22%, #000D12 59.26%)" as const;
