@@ -12,5 +12,10 @@ export const THEME_COLORS = {
   accent: "#00B4FD",
   surface: {
     page: "#000D12",
+    light: "#E9F4F9",
+  },
+  textOnLight: {
+    default: "#02171F",
+    muted: "rgba(2, 23, 31, 0.55)",
   },
 } as const;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
+import { LEARN_MORE_GRADIENT } from "@/config/section-layout";
 import { cn } from "@/lib/cn";
 import { cva, type VariantProps } from "@/lib/cva";
 
@@ -34,9 +35,9 @@ const buttonVariants = cva(
         ],
         learnMore: [
           "group h-auto w-auto justify-start gap-2 rounded-none border-0 bg-transparent p-0",
-          "text-[14px] leading-[1.3] font-medium tracking-normal text-accent",
+          "text-[14px] leading-[1.3] font-medium tracking-normal",
           "hover:opacity-80",
-          "focus-visible:ring-accent/40",
+          "focus-visible:ring-[#00B4FD]/40",
         ],
       },
       size: {
@@ -77,23 +78,44 @@ type ButtonProps = ButtonVariants & {
   | ({ href?: never } & ComponentPropsWithoutRef<"button">)
 );
 
+const learnMoreTextClass =
+  "bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]";
+
+function LearnMoreGradientText({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn("inline-block", learnMoreTextClass, className)}
+      style={{ backgroundImage: LEARN_MORE_GRADIENT }}
+    >
+      {children}
+    </span>
+  );
+}
+
 function LearnMoreLabel() {
   return (
     <>
       <span className="inline-flex items-baseline">
         {/* Underline under LEAR only — N and MORE are not underlined */}
         <span className="relative inline-block w-max pb-[3px] leading-none">
-          LEAR
+          <LearnMoreGradientText>LEAR</LearnMoreGradientText>
           <span
-            className="pointer-events-none absolute right-0 bottom-0 left-0 h-px bg-accent"
+            className="pointer-events-none absolute right-0 bottom-0 left-0 h-px"
+            style={{ backgroundImage: LEARN_MORE_GRADIENT }}
             aria-hidden
           />
         </span>
-        <span className="leading-none">N</span>
-        <span className="ml-2 leading-none">MORE</span>
+        <LearnMoreGradientText className="leading-none">N</LearnMoreGradientText>
+        <LearnMoreGradientText className="ml-2 leading-none">MORE</LearnMoreGradientText>
       </span>
       <ArrowRight
-        className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+        className="size-4 shrink-0 text-[#00B4FD] transition-transform group-hover:translate-x-0.5"
         strokeWidth={1.75}
         aria-hidden
       />

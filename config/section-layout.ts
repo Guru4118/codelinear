@@ -33,3 +33,6 @@ export const CB7_CTA_CARD_GRADIENT =
 
 export const PRODUCT_LABEL_GRADIENT =
   "linear-gradient(106.53deg, #00B4FD -5.68%, #003ACE 86.98%)" as const;
+
+export const LEARN_MORE_GRADIENT =
+  "linear-gradient(95.48deg, #00B4FD -79.76%, #003ACE 91.37%)" as const;

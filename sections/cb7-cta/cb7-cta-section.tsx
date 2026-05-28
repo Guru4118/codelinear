@@ -3,16 +3,41 @@ import { SectionContainer } from "@/layout/section-container";
 import { cn } from "@/lib/cn";
 
 import { Cb7CtaCard } from "./cb7-cta-card";
+import { CB7_CTA_COPY, type CtaCopy } from "./cb7-cta.constants";
+import type { CtaCardBackgroundText } from "./cb7-cta-card";
 
-export function Cb7CtaSection() {
+type Cb7CtaSectionProps = {
+  copy?: CtaCopy;
+  showBackgroundText?: boolean;
+  backgroundText?: CtaCardBackgroundText;
+  id?: string;
+  headingId?: string;
+  className?: string;
+};
+
+export function Cb7CtaSection({
+  copy = CB7_CTA_COPY,
+  showBackgroundText,
+  backgroundText = "cb7",
+  id = "paperless-cta",
+  headingId,
+  className,
+}: Cb7CtaSectionProps) {
+  const resolvedHeadingId = headingId ?? `${id}-heading`;
+
   return (
     <section
-      id="paperless-cta"
-      className={cn("relative w-full overflow-x-hidden bg-surface-page")}
-      aria-labelledby="cb7-cta-heading"
+      id={id}
+      className={cn("relative w-full overflow-x-hidden bg-surface-page", className)}
+      aria-labelledby={resolvedHeadingId}
     >
       <SectionContainer className={SECTION_LAYOUT.sectionYClass}>
-        <Cb7CtaCard />
+        <Cb7CtaCard
+          copy={copy}
+          backgroundText={backgroundText}
+          showBackgroundText={showBackgroundText}
+          headingId={resolvedHeadingId}
+        />
       </SectionContainer>
     </section>
   );

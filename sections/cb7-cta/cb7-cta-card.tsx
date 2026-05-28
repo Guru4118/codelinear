@@ -2,10 +2,41 @@ import { Button } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 import { Cb7CtaBackgroundText } from "./cb7-cta-background-text";
-import { CB7_CTA_COPY, CB7_CTA_LAYOUT } from "./cb7-cta.constants";
+import { N7CtaBackgroundText } from "./n7-cta-background-text";
+import { CB7_CTA_COPY, CB7_CTA_LAYOUT, type CtaCopy } from "./cb7-cta.constants";
 
-export function Cb7CtaCard() {
+export type CtaCardBackgroundText = false | "cb7" | "n7";
+
+type Cb7CtaCardProps = {
+  copy?: CtaCopy;
+  headingId?: string;
+  /** @deprecated Use `backgroundText` instead */
+  showBackgroundText?: boolean;
+  backgroundText?: CtaCardBackgroundText;
+};
+
+function resolveBackgroundText(
+  backgroundText: CtaCardBackgroundText | undefined,
+  showBackgroundText: boolean | undefined,
+): CtaCardBackgroundText {
+  if (backgroundText !== undefined) {
+    return backgroundText;
+  }
+  if (showBackgroundText === false) {
+    return false;
+  }
+  return "cb7";
+}
+
+export function Cb7CtaCard({
+  copy = CB7_CTA_COPY,
+  headingId = "cb7-cta-heading",
+  showBackgroundText,
+  backgroundText,
+}: Cb7CtaCardProps) {
+  const resolvedBackground = resolveBackgroundText(backgroundText, showBackgroundText);
   const { card, spacing } = CB7_CTA_LAYOUT;
+  const headingLines = typeof copy.heading === "string" ? [copy.heading] : copy.heading;
 
   return (
     <article
@@ -22,16 +53,17 @@ export function Cb7CtaCard() {
         padding: `${spacing.cardPaddingY}px ${spacing.cardPaddingX}px`,
       }}
     >
-      <Cb7CtaBackgroundText />
+      {resolvedBackground === "cb7" ? <Cb7CtaBackgroundText /> : null}
+      {resolvedBackground === "n7" ? <N7CtaBackgroundText /> : null}
 
       <div className="relative z-[1] flex w-full max-w-[560px] flex-col">
         <h2
-          id="cb7-cta-heading"
+          id={headingId}
           className={cn(
             "font-[family-name:var(--font-archivo)] text-[clamp(2rem,4vw,53px)] leading-[1.2] font-normal tracking-[-0.01em] text-text-default",
           )}
         >
-          {CB7_CTA_COPY.heading.map((line) => (
+          {headingLines.map((line) => (
             <span key={line} className="block">
               {line}
             </span>
@@ -44,7 +76,7 @@ export function Cb7CtaCard() {
           )}
           style={{ marginTop: spacing.headingToParagraph }}
         >
-          {CB7_CTA_COPY.paragraph}
+          {copy.paragraph}
         </p>
       </div>
 
@@ -55,10 +87,10 @@ export function Cb7CtaCard() {
         style={{ gap: spacing.buttonGap }}
       >
         <Button href="#contact" variant="secondary" size="hero" width="secondary">
-          {CB7_CTA_COPY.contactCta}
+          {copy.contactCta}
         </Button>
         <Button href="#request-demo" variant="primary" size="hero" width="primary">
-          {CB7_CTA_COPY.demoCta}
+          {copy.demoCta}
         </Button>
       </div>
     </article>

@@ -1,4 +1,5 @@
 export { BankingMarqueeSection } from "./banking-marquee";
+export { N7Section } from "./n7";
 export { Cb7Section } from "./cb7";
 export { Cb7CtaSection } from "./cb7-cta";
 export { CoreCapabilitiesSection } from "./core-capabilities";
